@@ -79,8 +79,8 @@ const ContactSection = () => {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+91 98765 43210',
-      href: 'tel:+919876543210',
+      value: '+91 77180 96969',
+      href: 'tel:+917718096969',
     },
     {
       icon: MapPin,
