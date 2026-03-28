@@ -77,9 +77,9 @@ const StorySections = () => {
               if (el) sectionsRef.current[index] = el
             }}
             id={story.id}
-            className={`section-padding ${story.bgColor} relative overflow-hidden`}
+            className={`relative py-10 md:py-20 flex items-center justify-center overflow-hidden scroll-mt-20 ${story.bgColor}`}
           >
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
                   <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-lg ${story.iconColor}`}>

@@ -65,7 +65,7 @@ const ContactSection = () => {
     }
 
     const message = `Hello, I would like to reserve a table at Artisan Coffee.\n\nName: ${formData.name}\nDate & Time: ${formattedDateTime}\nNumber of People: ${formData.people}\n\nPlease confirm my reservation. Thank you!`
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`
+    const whatsappUrl = `https://wa.me/917718096969?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
   }
 
@@ -115,11 +115,7 @@ const ContactSection = () => {
   ]
 
   return (
-    <section
-      ref={sectionRef}
-      id="contact"
-      className="section-padding bg-gradient-to-br from-coffee-800 to-coffee-900 text-white"
-    >
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 scroll-mt-20 bg-gradient-to-br from-coffee-900 to-coffee-800 text-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-serif mb-4">

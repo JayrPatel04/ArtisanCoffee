@@ -98,7 +98,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden scroll-mt-20">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
