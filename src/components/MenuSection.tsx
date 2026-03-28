@@ -116,20 +116,27 @@ const MenuSection = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white rounded-full shadow-lg p-1">
-            {menuCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${activeCategory === category.id
-                    ? 'bg-coffee-600 text-white'
-                    : 'text-gray-600 hover:text-coffee-600'
-                  }`}
-              >
-                {category.name}
-              </button>
-            ))}
+        <div className="flex justify-center mb-12 px-4 md:px-0">
+          <div className="relative">
+            {/* Right gradient fade indicator */}
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-transparent via-transparent to-transparent pointer-events-none md:hidden z-10"></div>
+
+            <div className="bg-white rounded-full shadow-lg p-1 pl-5 pr-5 md:overflow-visible overflow-x-auto md:flex-wrap flex-nowrap md:gap-0 gap-3 max-w-full md:max-w-none scrollbar-hide scroll-smooth">
+              {menuCategories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-6 py-2 rounded-full transition-all duration-300 flex-shrink-0 md:flex-shrink whitespace-nowrap ${activeCategory === category.id
+                      ? 'bg-coffee-600 text-white'
+                      : 'text-gray-600 hover:text-coffee-600'
+                    }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+              {/* Extra space to ensure last tab is slightly visible */}
+              <div className="w-4 flex-shrink-0 md:hidden"></div>
+            </div>
           </div>
         </div>
 

@@ -83,17 +83,32 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden mobile-sidebar bg-white rounded-lg shadow-lg mt-4 p-4 w-full max-w-xs mx-auto">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block py-3 text-gray-700 hover:text-coffee-600 transition-colors duration-300 text-center"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
+          <div className="md:hidden fixed inset-0 z-50">
+            {/* Clickable overlay to close */}
+            <div
+              className="absolute inset-0 bg-transparent"
+              onClick={() => setIsOpen(false)}
+            ></div>
+
+            {/* Popup menu container */}
+            <div
+              className="absolute left-1/2 transform -translate-x-1/2 mt-16 w-4/5 max-w-xs bg-white rounded-2xl shadow-xl p-5 animate-fadeInScale"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Menu items */}
+              <div className="flex flex-col items-center space-y-4">
+                {navItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-gray-700 text-lg font-medium hover:text-coffee-600 transition-colors duration-300 w-full text-center py-2"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </div>

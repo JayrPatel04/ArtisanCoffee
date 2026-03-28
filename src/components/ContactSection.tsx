@@ -50,8 +50,21 @@ const ContactSection = () => {
   const handleReservation = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const message = `Hello! I'd like to make a reservation at Artisan Coffee.%0A%0A📅 *Date & Time:* ${formData.dateTime}%0A👥 *Number of People:* ${formData.people}%0A👤 *Name:* ${formData.name}%0A%0APlease confirm availability. Thank you!`
+    // Format the date for better readability
+    let formattedDateTime = formData.dateTime
+    if (formData.dateTime) {
+      const date = new Date(formData.dateTime)
+      formattedDateTime = date.toLocaleString('en-IN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      })
+    }
 
+    const message = `Hello, I would like to reserve a table at Artisan Coffee.\n\nName: ${formData.name}\nDate & Time: ${formattedDateTime}\nNumber of People: ${formData.people}\n\nPlease confirm my reservation. Thank you!`
     const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
   }
@@ -74,6 +87,7 @@ const ContactSection = () => {
       label: 'Location',
       value: 'Bandra West, Mumbai, India',
       href: '#',
+      isMap: true,
     },
   ]
 
@@ -124,10 +138,15 @@ const ContactSection = () => {
                 {contactInfo.map((info, index) => {
                   const Icon = info.icon
                   return (
-                    <a
+                    <div
                       key={index}
-                      href={info.href}
-                      className="flex items-center space-x-4 p-4 rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors duration-300"
+                      className={`flex items-center space-x-4 p-4 rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors duration-300 ${info.isMap ? 'cursor-pointer hover:bg-white/30' : ''
+                        }`}
+                      onClick={() => {
+                        if (info.isMap) {
+                          window.open('https://www.google.com/maps/search/?api=1&query=Bandra+West+Mumbai+India', '_blank')
+                        }
+                      }}
                     >
                       <div className="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center">
                         <Icon size={24} className="text-white" />
@@ -136,7 +155,7 @@ const ContactSection = () => {
                         <p className="text-sm text-coffee-200">{info.label}</p>
                         <p className="text-lg font-semibold text-white">{info.value}</p>
                       </div>
-                    </a>
+                    </div>
                   )
                 })}
               </div>
@@ -165,7 +184,7 @@ const ContactSection = () => {
           </div>
 
           <div className="relative">
-            <div className="bg-white rounded-3xl p-8 shadow-2xl">
+            <div className="bg-white rounded-3xl p-8 shadow-2xl max-w-md md:max-w-full mx-auto">
               <h3 className="text-2xl font-bold text-black mb-6 font-serif">
                 Reserve Your Table
               </h3>
@@ -179,7 +198,7 @@ const ContactSection = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent outline-none transition-all duration-300 bg-white text-black placeholder-gray-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent outline-none transition-all duration-300 bg-white text-black placeholder-gray-500 text-base md:text-sm box-border"
                     placeholder="Your name"
                     required
                   />
@@ -193,7 +212,7 @@ const ContactSection = () => {
                     name="dateTime"
                     value={formData.dateTime}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent outline-none transition-all duration-300 bg-white text-black placeholder-gray-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent outline-none transition-all duration-300 bg-white text-black placeholder-gray-500 text-base md:text-sm box-border"
                     required
                   />
                 </div>
@@ -205,7 +224,7 @@ const ContactSection = () => {
                     name="people"
                     value={formData.people}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent outline-none transition-all duration-300 text-gray-700 bg-white"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent outline-none transition-all duration-300 text-gray-700 bg-white text-base md:text-sm box-border"
                   >
                     <option value="1">1 Person</option>
                     <option value="2">2 People</option>

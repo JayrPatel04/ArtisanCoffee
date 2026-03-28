@@ -20,7 +20,7 @@ export default function Home() {
       window.open('https://www.zomato.com/', '_blank')
     } catch (error) {
       // Fallback to phone call
-      window.location.href = 'tel:+919876543210'
+      window.location.href = 'tel:+917718096969'
     }
   }
 
